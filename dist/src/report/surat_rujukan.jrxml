@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="surat_rujukan" language="groovy" pageWidth="600" pageHeight="842" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e1433de4-b052-4562-844b-7bb30ff662de">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="no_rujukan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{rujukan_kd_inap}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     rujukan.`kd_inap` AS rujukan_kd_inap,
+     rujukan.`kd_dokter` AS rujukan_kd_dokter,
+     rujukan.`nama_dokter` AS rujukan_nama_dokter,
+     rujukan.`kd_pasien` AS rujukan_kd_pasien,
+     rujukan.`nama_pasien` AS rujukan_nama_pasien,
+     rujukan.`umur` AS rujukan_umur,
+     rujukan.`tgl_periksa` AS rujukan_tgl_periksa,
+     rujukan.`rumah_sakit` AS rujukan_rumah_sakit
+FROM
+     `rujukan` rujukan
+WHERE
+rujukan.kd_inap=$P{no_rujukan}]]>
+	</queryString>
+	<field name="rujukan_kd_inap" class="java.lang.String"/>
+	<field name="rujukan_kd_dokter" class="java.lang.String"/>
+	<field name="rujukan_nama_dokter" class="java.lang.String"/>
+	<field name="rujukan_kd_pasien" class="java.lang.String"/>
+	<field name="rujukan_nama_pasien" class="java.lang.String"/>
+	<field name="rujukan_umur" class="java.lang.String"/>
+	<field name="rujukan_tgl_periksa" class="java.lang.String"/>
+	<field name="rujukan_rumah_sakit" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="16" y="11" width="125" height="111" uuid="f2fcfbba-fe6e-4110-9e65-15b61643c9fa"/>
+				<imageExpression><![CDATA["C:\\Users\\Fajar\\Desktop\\Klinik\\src\\gambar\\Ruang.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="180" y="32" width="286" height="47" forecolor="#3399FF" uuid="ef3a302c-0b30-42fe-9827-8817f9a6aa89"/>
+				<textElement>
+					<font size="32" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SURAT RUJUKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="295" y="95" width="71" height="29" forecolor="#3399FF" uuid="b2dd9edd-b644-442e-a044-76b79b698774"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Klinik ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="566" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="14" y="12" width="338" height="18" forecolor="#FFFFFF" uuid="dde39c65-7e40-4393-ab18-2147b78a1010"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_inap}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="47" width="132" height="20" forecolor="#000000" uuid="0be03aa2-b3db-4e4e-9ffb-8976f544bc04"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode Dokter]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="47" width="338" height="18" uuid="1501b05c-f09f-4a0e-a051-17e7ebccaa8d"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_dokter}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="252" width="338" height="18" uuid="21449402-fa15-43fa-9b3e-9728b5b08d56"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_tgl_periksa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="85" width="132" height="20" forecolor="#000000" uuid="2419727c-7699-432e-bd40-398d7577e5db"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="125" width="132" height="20" forecolor="#000000" uuid="91d5d370-c54f-4a43-a7be-ce38970fe384"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode Pasien]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="168" width="338" height="18" uuid="15f2f565-5ad6-450f-9356-7253ce8ee22e"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="297" width="338" height="18" uuid="ffe74e1f-2978-42e4-b508-061023b1da05"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_rumah_sakit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="127" width="338" height="18" uuid="ca335adb-0d05-4c2c-8d62-f1d14b8876e4"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_pasien}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="0" width="551" height="20" backcolor="#3399FF" uuid="90854de0-0dca-48db-853a-7ecafd031bc4"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="215" width="338" height="18" uuid="79f3e432-b526-4df0-adf0-ae389ab90037"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_umur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="297" width="132" height="20" forecolor="#000000" uuid="7014a519-1c76-4d22-8e2b-53aac886b07b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rumah Sakit Rujukan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="252" width="132" height="20" forecolor="#000000" uuid="e36af885-990c-415c-8e48-272bbb5e76cb"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal Periksa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="166" width="132" height="20" forecolor="#000000" uuid="eb3eaa58-d0fc-4db4-ac94-e2a3ab395a84"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="213" width="132" height="20" forecolor="#000000" uuid="a252022a-979f-4666-8e15-15fa309438d5"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Umur Pasien]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="87" width="338" height="18" uuid="9fe6da45-81ef-46fc-978d-edfe59801593"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_nama_dokter}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="0" y="2" width="338" height="18" forecolor="#FFFFFF" uuid="85b94403-79a4-4ed0-801a-8308e5cc21a8"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_inap}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="47" width="132" height="20" forecolor="#000000" uuid="46d234e7-fd7a-4227-9a07-3a888a4875e2"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode Dokter]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="47" width="338" height="18" uuid="e20c701c-fbfc-4fad-8d46-4eb8353bf10e"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_dokter}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="252" width="338" height="18" uuid="b630b244-8468-4938-8c41-87794d32dfab"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_tgl_periksa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="85" width="132" height="20" forecolor="#000000" uuid="98aef7d6-f184-4f3c-a24c-a0094519cf73"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="125" width="132" height="20" forecolor="#000000" uuid="b3211c12-584e-4aec-8c46-b983e28c91a5"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode Pasien]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="168" width="338" height="18" uuid="166b2bb9-d194-4a35-9f39-54c3fd787906"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="297" width="338" height="18" uuid="a94dc02e-5f1d-4543-be0a-ab1f092defb8"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_rumah_sakit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="127" width="338" height="18" uuid="e95dc258-ae43-4773-a279-5f6870054500"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_kd_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="215" width="338" height="18" uuid="05b477d1-79c2-412e-875a-6ab4cc0280dd"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_umur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="297" width="132" height="20" forecolor="#000000" uuid="53b20394-75db-4c15-bb9b-8d543120fc18"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rumah Sakit Rujukan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="252" width="132" height="20" forecolor="#000000" uuid="690bb7b0-5363-4aac-93eb-ddbbc2cf4115"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal Periksa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="166" width="132" height="20" forecolor="#000000" uuid="d97b3ff7-f8f0-4fe4-84dc-0b3123cace0f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="16" y="213" width="132" height="20" forecolor="#000000" uuid="b97515d2-6a3c-47c0-a163-f6246451e283"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Umur Pasien]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="188" y="87" width="338" height="18" uuid="c160863d-ef5f-41ab-9f2c-5fdf0c1de23d"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rujukan_nama_dokter}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="378" width="555" height="1" uuid="de4085ec-6ffd-48dd-a0cf-66e8c1324db0"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="488" width="186" height="1" uuid="c5531632-3205-4b5b-be15-9638cddef8e0"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="415" y="393" width="106" height="20" uuid="7461cea6-19f1-4e23-bb30-85bb414eeb54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="381" y="502" width="174" height="27" uuid="9b66ded2-7ba4-44fd-8dd5-726afd048574"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="17" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanda Tangan Dokter]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="66166410-0ce7-47b7-92ba-6eaf69c2cc1c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="13" forecolor="#FFFFFF" backcolor="#3399FF" uuid="139d8a9a-71fc-405f-83fb-2918313cda41"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="511" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="f57d5fd3-b2f0-42c7-b2db-73cfd4804794"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="415" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="89e6ca2f-ff2c-4177-a643-13a634156a9b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

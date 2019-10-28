@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="surat_rawat_jalan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="33110e15-d073-44b3-8987-4b3c06e0f524">
+	<property name="ireport.zoom" value="1.8150000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="108"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="no_rawat_jalan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{rawat_jalan_kd_jalan}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     rawat_jalan.`kd_jalan` AS rawat_jalan_kd_jalan,
+     rawat_jalan.`kd_dokter` AS rawat_jalan_kd_dokter,
+     rawat_jalan.`nama_dokter` AS rawat_jalan_nama_dokter,
+     rawat_jalan.`kd_pasien` AS rawat_jalan_kd_pasien,
+     rawat_jalan.`nama_pasien` AS rawat_jalan_nama_pasien,
+     rawat_jalan.`tgl_periksa` AS rawat_jalan_tgl_periksa,
+     rawat_jalan.`biaya` AS rawat_jalan_biaya
+FROM
+     `rawat_jalan` rawat_jalan
+WHERE
+     rawat_jalan.kd_jalan=$P{no_rawat_jalan}]]>
+	</queryString>
+	<field name="rawat_jalan_kd_jalan" class="java.lang.String"/>
+	<field name="rawat_jalan_kd_dokter" class="java.lang.String"/>
+	<field name="rawat_jalan_nama_dokter" class="java.lang.String"/>
+	<field name="rawat_jalan_kd_pasien" class="java.lang.String"/>
+	<field name="rawat_jalan_nama_pasien" class="java.lang.String"/>
+	<field name="rawat_jalan_tgl_periksa" class="java.lang.String"/>
+	<field name="rawat_jalan_biaya" class="java.lang.String"/>
+	<title>
+		<band height="152" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="162" y="0" width="311" height="115" uuid="d730a55f-af3a-4fe6-b82f-60274055caf5"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="32" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Laporan Rawat Jalan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="262" y="115" width="249" height="37" forecolor="#3399FF" uuid="440f2a99-db2f-46df-8056-bd3484ca44b8"/>
+				<textElement textAlignment="Right">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Klinik Tirta Husada]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="137" height="127" uuid="5d7c5fa2-9c99-49e7-b312-9a19281f057c"/>
+				<imageExpression><![CDATA["C:\\Users\\Fajar\\Desktop\\Klinik\\src\\gambar\\Ruang.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="406" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="25" forecolor="#FFFFFF" backcolor="#666666" uuid="dd895323-f70d-4a28-b5e5-dc3eb5957547"/>
+				<box>
+					<pen lineColor="#6699FF"/>
+					<topPen lineColor="#6699FF"/>
+					<leftPen lineColor="#6699FF"/>
+					<bottomPen lineColor="#6699FF"/>
+					<rightPen lineColor="#6699FF"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="13" y="5" width="149" height="15" forecolor="#FFFFFF" backcolor="#666666" uuid="3c80ab6b-3115-4471-8f7b-0392d478c64b"/>
+				<text><![CDATA[Kode Rawat Jalan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="13" y="44" width="149" height="15" forecolor="#000000" uuid="bd523076-0f2a-424b-8bd7-fad99514ad10"/>
+				<text><![CDATA[Kode Dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="13" y="72" width="176" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="5fc17a46-2e62-4054-8658-aed817d45770"/>
+				<text><![CDATA[Nama Dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="13" y="100" width="133" height="15" forecolor="#000000" uuid="c0a0dee2-08aa-4c8e-9584-63dcba66c197"/>
+				<text><![CDATA[Kode Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="13" y="130" width="160" height="15" forecolor="#000000" uuid="9b5fe6c9-5b8d-4f20-8288-07f73888776b"/>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="13" y="158" width="176" height="15" forecolor="#000000" uuid="1103c1a2-79f5-42aa-84b6-52b6c8772a0c"/>
+				<text><![CDATA[Tanggal Pemeriksaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="219" width="119" height="15" forecolor="#000000" uuid="ebd20288-7229-48c9-b764-02dce2c69938"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Biaya]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="208" y="5" width="146" height="15" forecolor="#FFFFFF" uuid="0b1272de-99ec-4a9b-9a43-3f4fbe41e6cb"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_kd_jalan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="44" width="182" height="15" uuid="dc57f683-6849-4a12-aac6-2a9d8c3d3ed1"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_kd_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="72" width="184" height="15" uuid="30c252ff-e918-4d66-9dcb-3900322c713c"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_nama_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="100" width="184" height="15" uuid="f4d4cc38-9fb1-4827-b0d7-f44f5a9707ea"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_kd_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="130" width="184" height="15" uuid="84d2a042-4eca-4578-9f70-887cffd2f402"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="208" y="158" width="184" height="15" uuid="d3d7ef56-adb2-40bb-8b2b-2d060439d89b"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_tgl_periksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="411" y="246" width="106" height="15" uuid="7bbd5b12-c50c-4a52-a4dd-7fa60067dae1"/>
+				<textFieldExpression><![CDATA[$F{rawat_jalan_biaya}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="438" y="309" width="59" height="20" uuid="d4c18137-bdaf-44f4-a9c0-6009fa7e544c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Klinik ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="411" y="329" width="100" height="20" uuid="5d1d96c3-9d0f-456d-acfd-e9e74bf7ec42"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="390" y="246" width="21" height="20" uuid="4b32c217-b87e-4d4c-82dd-9afe96088bd8"/>
+				<textElement>
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="72" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1" uuid="31b0f9be-0ed3-44ca-8d50-847a299e2d26"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="7" width="100" height="20" uuid="343e052d-fb6b-4c3e-ac6c-9654be1d5002"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
